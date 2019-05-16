@@ -28,13 +28,15 @@ def user_signup():
         verify_error = "Passwords don't match"
         
     email_error = ''
-    if len(email) > 0 and  len(email) <= 3 or len(email) >= 20 and email.count("@") != 1 or email.count(".") != 1:
-        email_error = "That's not a valid email"
+    if len(email) >0:
+
+         if (len(email) <= 3 and len(email) >= 20) or  email.count("@") != 1 or email.count(".") != 1:
+             email_error = "That's not a valid email"
 
     if username_error or password_error or verify_error or email_error:
-        return render_template ('index.html',
-            username_error = username_error, password_error = password_error,
+        return render_template ('index.html', username_error = username_error, password_error = password_error,
             email_error = email_error, verify_error = verify_error)
+        
     else:
         return render_template('welcome.html', username = username)
         
